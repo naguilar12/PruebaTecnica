@@ -23,8 +23,8 @@ class Transaccion extends Component {
         let { _id, createdDate, type, value, points } = this.props.transaccion
     
         return (
-            <div className='modal-transaccion'>
-                <div className='modal' ref={this.modalRef}>
+            <div className='fondo-modal-transaccion'>
+                <div className='modal-transaccion' ref={this.modalRef}>
                     <b>Transacción</b>
                     <div className='datos-transaccion'>
                         <div>

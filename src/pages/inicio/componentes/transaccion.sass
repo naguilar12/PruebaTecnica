@@ -1,5 +1,5 @@
-.modal-transaccion
-    position: absolute
+.fondo-modal-transaccion
+    position: fixed
     width: 100vw
     height: 100vh
     background-color: rgba(0, 0, 0, 0.3)
@@ -7,9 +7,11 @@
     place-items: center
     color: black
 
-    .modal
+    .modal-transaccion
         border-radius: 25px
+        height: fit-content
         width: 30%
+        min-width: 400px
         background-color: white
         display: flex
         flex-direction: column
@@ -26,5 +28,9 @@
 
             .campo-tipo
                 grid-area: tipo
+    @media screen and ( max-width:  450px)
+        .modal-transaccion
+            min-width: 300px
 
+        
         

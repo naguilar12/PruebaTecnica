@@ -6,6 +6,8 @@ import InputRange from 'react-input-range'
 import 'react-input-range/lib/css/index.css'
 import './inicio.sass'
 import LoadingIndicator from '../../components/LoadingIndicator/LoadingIndicator'
+import Table from 'react-bootstrap/Table'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Inicio extends Component {
 
@@ -58,17 +60,22 @@ class Inicio extends Component {
             return requisitos
         })
 
+        if(transaccionesFiltradas.length === 0)
+            return <tr>
+                <td colSpan="4">No hay transacciones</td>
+            </tr>
+
         return transaccionesFiltradas.map( transaccion => 
-            <div className='estructura-transaccion'>
-                <div>{transaccion._id}</div>
-                <div>{transaccion.createdDate.slice(0,10)}</div>
-                <div>{transaccion.type}</div>
-                <div className='ver-detalle' onClick={ () => {
+            <tr>
+                <td>{transaccion._id}</td>
+                <td>{transaccion.createdDate.slice(0,10)}</td>
+                <td>{transaccion.type}</td>
+                <td className='ver-detalle' onClick={ () => {
                     this.setState({
                         transaccionActual: transaccion
                     })
-                }}>Ver</div>
-            </div>
+                }}>Ver</td>
+            </tr>
         )
     }
 
@@ -104,56 +111,65 @@ class Inicio extends Component {
         return (
             <div className='pagina-transacciones'>
                 <div className='contenido-transacciones'>
-                    <h1 className='titulo-transacciones'>Transacciones</h1>
-                    <div className='fecha-inputs'>
-                        <b>Inicio</b>
-                        <b>Fin</b>
-                        <input type="date" name='fechaInicio' value={fechaInicio}/>
-                        <input type="date" name='fechaFin' value={fechaFin} onChange={this.handleChange}/>
-                    </div>
-                    <button className='btn-buscar' onClick={this.onBuscarClicked}>Actualizar</button>
-                    <div className='titulo-tipo'>
-                        Tipo
-                    </div>
-                    <div className='checkboxes'>
-                        <div className='checkbox-type'>
-                            <input type="checkbox" name="earn" checked={earn} onChange={() => this.setState({earn: !this.state.earn})}/>
-                            earn
+                    <div className='barra-filtros'>
+                        <h1 className='titulo-transacciones'>Transacciones</h1>
+                        <div className='fecha-inputs'>
+                            <b>Inicio</b>
+                            <input type="date" name='fechaInicio' value={fechaInicio}/>
+                            <b>Fin</b>
+                            <input type="date" name='fechaFin' value={fechaFin} onChange={this.handleChange}/>
                         </div>
-                        <div className='checkbox-type'>
-                            <input type="checkbox" name="redeem" checked={redeem} onChange={() => this.setState({redeem: !this.state.redeem})}/>
-                            redeem
+                        <button className='btn-buscar' onClick={this.onBuscarClicked}>Actualizar</button>
+                        <div className='titulo-tipo'>
+                            Tipo
                         </div>
-                    </div>
-                    <div className='contenedor-rango-valor'>
-                        <b>Rango de valor</b>
-                        <InputRange
-                            step={1000}
-                            maxValue={50000}
-                            minValue={0}
-                            value={value}
-                            onChange={value => this.setState({ value })}/>
-                    </div>
-                    <div className='contenedor-rango-valor'>
-                        <b>Rango de puntos</b>
-                        <InputRange
-                            step={5}
-                            maxValue={50}
-                            minValue={0}
-                            value={points}
-                            onChange={points => this.setState({ points })}/>
-                    </div>
-                    
+                        <div className='checkboxes'>
+                            <div className='checkbox-type'>
+                                <input type="checkbox" name="earn" checked={earn} onChange={() => this.setState({earn: !this.state.earn})}/>
+                                earn
+                            </div>
+                            <div className='checkbox-type'>
+                                <input type="checkbox" name="redeem" checked={redeem} onChange={() => this.setState({redeem: !this.state.redeem})}/>
+                                redeem
+                            </div>
+                        </div>
+                        <div className='contenedor-rango-valor'>
+                            <b>Rango de valor</b>
+                            <InputRange
+                                step={1000}
+                                maxValue={50000}
+                                minValue={0}
+                                value={value}
+                                onChange={value => this.setState({ value })}/>
+                        </div>
+                        <div className='contenedor-rango-valor'>
+                            <b>Rango de puntos</b>
+                            <InputRange
+                                step={5}
+                                maxValue={50}
+                                minValue={0}
+                                value={points}
+                                onChange={points => this.setState({ points })}/>
+                        </div>
+                    </div>                    
                     <div className='contenedor-transacciones'>
-                        <div className='estructura-transaccion'>
-                            <b>ID</b>
-                            <b>Fecha</b>
-                            <b>Tipo</b>
-                            <b>Detalle</b>
-                        </div>
-                        {
-                            this.renderTransacciones()
-                        }
+                        <Table
+                            className='tabla' 
+                            responsive striped bordered hover size="sm" style={{backgroundColor: "white"}}>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Fecha</th>
+                                    <th>Tipo</th>
+                                    <th>Detalle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    this.renderTransacciones()
+                                }
+                            </tbody>
+                        </Table>
                     </div>
                     {
                         transaccionActual &&
