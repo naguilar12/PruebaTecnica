@@ -5,13 +5,13 @@
     min-height: 100vh
     height: fit-content
     width: 100vw
-    // overflow: hidden
+    overflow: hidden
 
     .contenido-transacciones
         display: grid
         grid-template-areas: "barra tabla tabla tabla tabla"
         position: relative
-        background-color: rgba(0, 0, 0, 0.5)
+        background-color: rgba(0, 0, 0, 0.2)
         width: 100%
         height: 100%
         min-height: 100vh
@@ -38,6 +38,20 @@
                 >:first-child
                     margin-bottom: 20px
 
+                *
+                    color: white
+                
+                .input-range__slider
+                    background-color: white
+                    border: none
+
+                .input-range__track--active
+                    background-color: white
+
+                .input-range__track--background
+                    background-color: black
+
+
             @media screen and ( max-width: 350px)
                 .contenedor-rango-valor
                     text-align: center
@@ -50,6 +64,21 @@
             border: none
             border-radius: 25px
             padding: 5px 10px
+            outline: none
+
+            &:hover
+                animation: animation 0.5s forwards
+
+        @keyframes animation 
+            from
+                background-color: white
+                color: black
+
+            to 
+                background-color: black
+                color: white
+
+
 
         .titulo-tipo
             font-weight: bold
@@ -69,6 +98,7 @@
                 justify-content: left
                 >input
                     margin-right: 5px
+                    cursor: pointer
 
         .titulo-transacciones
             margin: 50px 0px 20px 0px
@@ -87,12 +117,16 @@
             grid-area: tabla
             min-height: 500px
             display: flex
-            flex-direction: row
+            flex-direction: column
             justify-content: center
             align-items: center
             text-align: center
             flex-grow: 1
             width: 100%
+
+            h1
+                width: 80%
+                margin-bottom: 20px
 
             .table-responsive
                 width: 80%
