@@ -1,0 +1,56 @@
+.contenedor-login
+    background-color: black
+    display: grid
+    place-items: center
+    min-height: 100vh
+    background-image: url("./../../assets/back-2-.jpg")
+    position: relative
+
+    .dialogo-login
+        background-color: rgba(0, 0, 0, 0.5)
+        color: white 
+        border-radius: 25px
+        width: 385px
+        height: 300px
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+
+        >h2
+            margin-bottom: 20px
+            font-weight: bold
+
+        .error
+            margin-bottom: 10px
+            text-align: center
+            width: 80%
+
+        .campos-login
+            display: flex
+            width: 60%
+            flex-direction: column
+            justify-content: space-between
+            align-items: center
+            text-align: center
+
+            >input
+                width: 100%
+                text-align: center
+                border-radius: 10px
+                border: 1px solid black
+                margin-bottom: 10px
+                padding: 5px 0
+
+            > div
+                align-self: flex-start
+                width: fit-content
+                margin-bottom: 10px
+        
+        >button
+            cursor: pointer
+            background-color: white
+            width: 100px
+            padding: 5px 0
+            border-radius: 10px
+            border: 1px solid black

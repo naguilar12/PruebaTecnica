@@ -1,0 +1,30 @@
+.modal-transaccion
+    position: absolute
+    width: 100vw
+    height: 100vh
+    background-color: rgba(0, 0, 0, 0.3)
+    display: grid
+    place-items: center
+    color: black
+
+    .modal
+        border-radius: 25px
+        width: 30%
+        background-color: white
+        display: flex
+        flex-direction: column
+        align-items: center
+        padding: 30px 20px
+
+        .datos-transaccion
+            margin: 10px 0
+            display: grid
+            grid-template-areas: "id fecha" "valor puntos" "tipo tipo"
+            text-align: center
+            column-gap: 20px
+            row-gap: 10px
+
+            .campo-tipo
+                grid-area: tipo
+
+        
